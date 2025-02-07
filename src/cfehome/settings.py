@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".railway.app",
+    'saas-production-4993.up.railway.app',
 ]
 
 if DEBUG:
