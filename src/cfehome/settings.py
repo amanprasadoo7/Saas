@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-@$-s%95@r1mka-2-@fy)2nglk*-(zzl3lu#i#=19%^q*c#wws-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    ".railway.app",
-    'saas-production-4993.up.railway.app',
+    '.railway.app',  # Allows all subdomains of railway.app
+    'saas-production-4993.up.railway.app',  # Specific domain for your Railway app
 ]
 
 if DEBUG:
