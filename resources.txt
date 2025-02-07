@@ -1,0 +1,11 @@
+# Git Reference
+https://github.com/codingforentrepreneurs/SaaS-Foundations
+
+# Sample .gitignore reference
+https://github.com/github/gitignore/blob/main/Python.gitignore
+
+# Django Model field reference
+https://docs.djangoproject.com/en/5.1/search/?q=Model+fields
+
+# Deploy Django on Railway with this Dockerfile
+https://www.codingforentrepreneurs.com/blog/deploy-django-on-railway-with-this-dockerfile
