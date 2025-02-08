@@ -15,3 +15,5 @@ https://www.codingforentrepreneurs.com/blog/deploy-django-on-railway-with-this-d
 #Manage DB using Neon postgresql
 https://neon.tech/
 https://pypi.org/project/psycopg-binary/
+
+Styling with TailwindCss and FlowBite
