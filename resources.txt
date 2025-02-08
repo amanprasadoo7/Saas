@@ -11,3 +11,7 @@ https://docs.djangoproject.com/en/5.1/search/?q=Model+fields
 https://www.codingforentrepreneurs.com/blog/deploy-django-on-railway-with-this-dockerfile
 
 # Manage python env variables through "python-decouple"
+
+#Manage DB using Neon postgresql
+https://neon.tech/
+https://pypi.org/project/psycopg-binary/
