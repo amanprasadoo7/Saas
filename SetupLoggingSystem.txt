@@ -1,0 +1,96 @@
+Yes! Django has a built-in logging system similar to Laravel’s. By default, Django logs messages and errors, and you can configure it to store logs in files just like Laravel does.
+
+### **Where Does Django Store Logs?**
+Django does not automatically create log files like Laravel, but you can configure it to log data in a file (e.g., `logs/django.log`). By default, logging happens in memory or in the console unless you explicitly set up a file handler.
+
+---
+
+### **How to Log Data in Django (Like Laravel's `storage/logs`)?**
+You can configure logging in Django's `settings.py` file like this:
+
+```python
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'storage/logs/django.log',  # Similar to Laravel
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+```
+---
+
+### **How to Log Messages in Django?**
+Once logging is set up, you can log messages anywhere in your Django app:
+
+```python
+import logging
+
+logger = logging.getLogger('django')
+
+logger.debug("This is a debug message")
+logger.info("This is an info message")
+logger.warning("This is a warning message")
+logger.error("This is an error message")
+logger.critical("This is a critical error message")
+```
+This will store the logs inside `storage/logs/django.log`.
+
+---
+
+### **Where Should You Place the Log File?**
+Just like Laravel stores logs in `storage/logs`, you can create a `storage/logs/` directory in your Django project and store log files there. Make sure this directory exists before running your project.
+
+```bash
+mkdir -p storage/logs
+```
+
+You should also ensure Django has write permissions to this directory.
+
+---
+
+### **Bonus: Rotating Logs (Avoid Huge Log Files)**
+To automatically rotate log files (like Laravel), you can use `RotatingFileHandler`:
+
+```python
+'handlers': {
+    'file': {
+        'level': 'DEBUG',
+        'class': 'logging.handlers.RotatingFileHandler',
+        'filename': 'storage/logs/django.log',
+        'maxBytes': 1024*1024*5,  # 5MB per file
+        'backupCount': 5,  # Keep last 5 log files
+        'formatter': 'verbose',
+    },
+},
+```
+
+This ensures logs don’t grow indefinitely.
+
+---
+
+### **Final Thoughts**
+Yes, Django has a logging system like Laravel, but you have to configure it manually. Once set up, you can log everything from debugging messages to critical errors in a structured log file.
+
+Let me know if you need help configuring it! 🚀

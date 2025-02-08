@@ -30,10 +30,11 @@ ALLOWED_HOSTS = [
     '.railway.app',  # Allows all subdomains of railway.app
     'saas-production-4993.up.railway.app',  # Specific domain for your Railway app
 ]
-
 if DEBUG:
     # ALLOWED_HOSTS = ['*']
     ALLOWED_HOSTS += ['localhost', '127.0.0.1']
+
+# print('ALLOWED_HOSTS',ALLOWED_HOSTS)
 
 # Application definition
 
@@ -134,3 +135,34 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Logging like Laravel in Log Files
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'storage/logs/django.log',  # Similar to Laravel
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
