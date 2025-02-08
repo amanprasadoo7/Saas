@@ -16,4 +16,7 @@ https://www.codingforentrepreneurs.com/blog/deploy-django-on-railway-with-this-d
 https://neon.tech/
 https://pypi.org/project/psycopg-binary/
 
-Styling with TailwindCss and FlowBite
+# Styling with TailwindCss and FlowBite
+
+# Load Static CSS and JS using "WhiteNoise"
+https://whitenoise.readthedocs.io/en/stable/django.html 
