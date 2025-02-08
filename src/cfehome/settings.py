@@ -26,11 +26,14 @@ SECRET_KEY = 'django-insecure-@$-s%95@r1mka-2-@fy)2nglk*-(zzl3lu#i#=19%^q*c#wws-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '.railway.app',  # Allows all subdomains of railway.app
+    'saas-production-4993.up.railway.app',  # Specific domain for your Railway app
+]
 
 if DEBUG:
     # ALLOWED_HOSTS = ['*']
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS += ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'visits',
 ]
 
 MIDDLEWARE = [
