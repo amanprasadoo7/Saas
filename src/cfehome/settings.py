@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-DATABASE_URL = config('DATABASE_URL', default=None, cast=str)
+DATABASE_URL = config('DATABASE_URL', default="postgresql://neondb_owner:npg_U6DpZGViNF5S@ep-fancy-frog-a880j9w3-pooler.eastus2.azure.neon.tech/neondb?sslmode=require", cast=str)
 
 if DATABASE_URL:
     DATABASES = {
