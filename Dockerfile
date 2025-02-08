@@ -37,7 +37,7 @@ WORKDIR /code
 # Copy the requirements file into the container
 COPY requirements.txt /tmp/requirements.txt
 
-# Set the environment variable for the Django project settings
+# Set the environment variable for the Django project settings Starts
 ARG SECRET_KEY
 ENV SECRET_KEY=${SECRET_KEY}
 
@@ -46,6 +46,14 @@ ENV DEBUG=${DEBUG}
 
 ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
+
+ARG EMAIL_HOST_USER
+ENV EMAIL_HOST_USER=${EMAIL_HOST_USER}
+
+ARG EMAIL_HOST_PASSWORD
+ENV EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+
+# Set the environment variable for the Django project settings Ends
 
 # copy the project code into the container's working directory
 COPY ./src /code

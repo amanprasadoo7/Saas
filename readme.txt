@@ -1,3 +1,4 @@
+# Important python Commands
 
 python3 --version
 django-admin --version
@@ -31,3 +32,5 @@ python manage.py runserver
 python manage.py startapp {App Name}
 python manage.py startapp visits
 
+# To test email functionality
+python manage.py sendtestemail --admin

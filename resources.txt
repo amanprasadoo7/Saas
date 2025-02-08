@@ -23,3 +23,6 @@ https://whitenoise.readthedocs.io/en/stable/django.html
 
 # Instead of WhiteNoise we could also use Django Storage specially Amazon's S3 Bucket
 https://django-storages.readthedocs.io/en/latest/
+
+# sending-email-in-django-from-gmail
+https://www.codingforentrepreneurs.com/blog/sending-email-in-django-from-gmail

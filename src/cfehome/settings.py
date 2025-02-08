@@ -18,6 +18,21 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 # print('BASE_DIR',BASE_DIR)
 
+# Email Credentials
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config("EMAIL_HOST", cast=str, default='smtp.gmail.com')
+EMAIL_PORT = config("EMAIL_PORT", cast=str, default='587')
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=True)
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool, default=False)  
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", cast=str, default=None)
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str, default=None)
+
+# Quick-start development settings - unsuitable for production
+# ADMINS = [
+#     ('Admin', 'xyz@gmail.com'),
+# ]
+# python manage.py sendtestemail --admin (To send test email to Admin)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -47,6 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 
     'visits',
 ]
 
@@ -147,11 +163,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 # WHITENOISE for Static Files
 STORAGES = {
     # ...
@@ -159,6 +170,11 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Logging like Laravel in Log Files
