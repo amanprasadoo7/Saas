@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-@$-s%95@r1mka-2-@fy)2nglk*-(zzl3lu#i#=19%^q*c#wws-')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=False)
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = [
     '.railway.app',  # Allows all subdomains of railway.app
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'cfehome.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-DATABASE_URL = config('DATABASE_URL', default="postgresql://neondb_owner:npg_U6DpZGViNF5S@ep-fancy-frog-a880j9w3-pooler.eastus2.azure.neon.tech/neondb?sslmode=require", cast=str)
+DATABASE_URL = config('DATABASE_URL', default=None, cast=str)
 
 if DATABASE_URL:
     DATABASES = {
