@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-import logging
+# import logging
 
-logger = logging.getLogger(__name__)
+
+# logger = logging.getLogger(__name__)
 
 def home_page_view_v1(request):
     return HttpResponse("<h1>Hello, world. You're at the cfehome index.</h1>")

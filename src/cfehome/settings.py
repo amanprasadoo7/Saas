@@ -137,6 +137,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Logging like Laravel in Log Files
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -166,3 +167,4 @@ LOGGING = {
         },
     },
 }
+"""
