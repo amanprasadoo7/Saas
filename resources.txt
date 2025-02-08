@@ -19,4 +19,7 @@ https://pypi.org/project/psycopg-binary/
 # Styling with TailwindCss and FlowBite
 
 # Load Static CSS and JS using "WhiteNoise"
-https://whitenoise.readthedocs.io/en/stable/django.html 
+https://whitenoise.readthedocs.io/en/stable/django.html
+
+# Instead of WhiteNoise we could also use Django Storage specially Amazon's S3 Bucket
+https://django-storages.readthedocs.io/en/latest/
