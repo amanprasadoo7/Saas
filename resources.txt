@@ -9,3 +9,5 @@ https://docs.djangoproject.com/en/5.1/search/?q=Model+fields
 
 # Deploy Django on Railway with this Dockerfile
 https://www.codingforentrepreneurs.com/blog/deploy-django-on-railway-with-this-dockerfile
+
+# Manage python env variables through "python-decouple"
