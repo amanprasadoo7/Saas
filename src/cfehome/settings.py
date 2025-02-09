@@ -38,7 +38,14 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str, default=None)
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 if config('ENVIRONMENT') == 'production':
-    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS')
+    CSRF_TRUSTED_ORIGINS = ['https://saas-production-c24b.up.railway.app']
+else:
+    LOGIN_REDIRECT_URL = '/'
+    LOGOUT_REDIRECT_URL = '/'
+
+# Required for proxy setups (Railway uses a reverse proxy)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
@@ -47,13 +54,14 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = [
+    'saas-production-c24b.up.railway.app'
     '.railway.app',  # Allows all subdomains of railway.app
     'saas-production-4993.up.railway.app',  # Specific domain for your Railway app
 ]
 
 if DEBUG:
     # ALLOWED_HOSTS = ['*']
-    ALLOWED_HOSTS += ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS += ['*','localhost', '127.0.0.1']
 
 # print('ALLOWED_HOSTS',ALLOWED_HOSTS)
 
@@ -75,6 +83,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
     "widget_tweaks",
     "slippers",
     
@@ -177,7 +186,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Django Allauth Settings
+
 SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        "VERIFIED_EMAIL": True,
+    }
 }
 
 # Internationalization

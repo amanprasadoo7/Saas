@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth.decorators import login_required
 from .views import home_page_view_v1, home_page_view_v2, dynamic_page_view_v1, home_page_view, about_page_view, contact_page_view
 
 urlpatterns = [
@@ -36,10 +37,9 @@ urlpatterns = [
         # Note : To use below commented routes in settings.py uncomment the following line
         # 'DIRS': [BASE_DIR / "templates"],
 
-    
         path('', home_page_view, name='home'),
         path('about/', about_page_view, name='about'),
-        path('contact/', contact_page_view, name='contact'),
+        path('contact/', login_required(contact_page_view), name='contact'),
         
         # Allauth routes
         path('accounts/', include('allauth.urls')),

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 # import logging
 
 
@@ -25,6 +26,7 @@ def home_page_view(request):
     # logger.debug("Debugging home page view")
     return render(request, 'pages/home.html')
 
+@login_required
 def about_page_view(request):
     return render(request, 'pages/about.html')
 

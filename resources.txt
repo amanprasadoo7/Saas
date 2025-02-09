@@ -34,4 +34,7 @@ http://127.0.0.1:8000/accounts/signup/ (Route)
 # Beautify AllAuth Logins
 https://github.com/danihodovic/django-allauth-ui
 
+# AllAuth 3rd Party Login Providers
+https://docs.allauth.org/en/latest/socialaccount/providers/github.html
+
 
