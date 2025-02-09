@@ -37,11 +37,11 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str, default=None)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 if config('ENVIRONMENT') == 'production':
     CSRF_TRUSTED_ORIGINS = ['https://saas-production-c24b.up.railway.app']
-else:
-    LOGIN_REDIRECT_URL = '/'
-    LOGOUT_REDIRECT_URL = '/'
 
 # Required for proxy setups (Railway uses a reverse proxy)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -56,11 +56,9 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = [
     'saas-production-c24b.up.railway.app'
     '.railway.app',  # Allows all subdomains of railway.app
-    'saas-production-4993.up.railway.app',  # Specific domain for your Railway app
 ]
 
 if DEBUG:
-    # ALLOWED_HOSTS = ['*']
     ALLOWED_HOSTS += ['*','localhost', '127.0.0.1']
 
 # print('ALLOWED_HOSTS',ALLOWED_HOSTS)
