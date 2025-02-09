@@ -37,6 +37,9 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str, default=None)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
+if config('ENVIRONMENT') == 'production':
+    CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS')
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 

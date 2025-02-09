@@ -53,6 +53,12 @@ ENV EMAIL_HOST_USER=${EMAIL_HOST_USER}
 ARG EMAIL_HOST_PASSWORD
 ENV EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
 
+ARG CSRF_TRUSTED_ORIGINS
+ENV CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
+
+ARG ENVIRONMENT
+ENV ENVIRONMENT=${ENVIRONMENT}
+
 # Set the environment variable for the Django project settings Ends
 
 # copy the project code into the container's working directory
