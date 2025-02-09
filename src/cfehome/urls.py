@@ -41,6 +41,9 @@ urlpatterns = [
         path('about/', about_page_view, name='about'),
         path('contact/', login_required(contact_page_view), name='contact'),
         
+        #profiles
+        path('profiles/', include('profiles.urls')),
+        
         # Allauth routes
         path('accounts/', include('allauth.urls')),
 
