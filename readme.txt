@@ -34,3 +34,5 @@ python manage.py startapp visits
 
 # To test email functionality
 python manage.py sendtestemail --admin
+
+python manage.py createsuperuser

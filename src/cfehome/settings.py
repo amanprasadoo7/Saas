@@ -47,6 +47,7 @@ ALLOWED_HOSTS = [
     '.railway.app',  # Allows all subdomains of railway.app
     'saas-production-4993.up.railway.app',  # Specific domain for your Railway app
 ]
+
 if DEBUG:
     # ALLOWED_HOSTS = ['*']
     ALLOWED_HOSTS += ['localhost', '127.0.0.1']
@@ -62,8 +63,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 
+    
+    # My Apps
     'visits',
+    
+    #Insall 3rd Party Apps
+    "allauth_ui",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    "widget_tweaks",
+    "slippers",
+    
 ]
 
 MIDDLEWARE = [
@@ -74,6 +85,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    "allauth.account.middleware.AccountMiddleware", # Django Allauth Middleware
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -139,6 +151,31 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django Allauth Authentication Methods
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[Django Allauth]'
+# ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+# ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # 300 seconds or 5 minutes
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+# ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/login/'
+# ACCOUNT_LOGOUT_ON_GET = True
+# ACCOUNT_SESSION_REMEMBER = True
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Django Allauth Settings
+SOCIALACCOUNT_PROVIDERS = {
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

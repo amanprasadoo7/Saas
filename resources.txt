@@ -26,3 +26,12 @@ https://django-storages.readthedocs.io/en/latest/
 
 # sending-email-in-django-from-gmail
 https://www.codingforentrepreneurs.com/blog/sending-email-in-django-from-gmail
+
+# Django Authentication Package AllAuth
+https://docs.allauth.org/en/latest/
+http://127.0.0.1:8000/accounts/signup/ (Route)
+
+# Beautify AllAuth Logins
+https://github.com/danihodovic/django-allauth-ui
+
+

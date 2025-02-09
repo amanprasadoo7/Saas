@@ -1,7 +1,15 @@
 Django>=5.0,<5.1
-gunicorn 
+gunicorn
+# .env file management 
 python-decouple
+# Database
 psycopg[binary]
 dj-database-url
 requests
-whitenoise # for static files in production
+# for static files in production
+whitenoise
+# Allauth
+django-allauth[socialaccount]
+django-allauth-ui
+django-widget-tweaks
+slippers

@@ -40,6 +40,9 @@ urlpatterns = [
         path('', home_page_view, name='home'),
         path('about/', about_page_view, name='about'),
         path('contact/', contact_page_view, name='contact'),
+        
+        # Allauth routes
+        path('accounts/', include('allauth.urls')),
 
         #admin
         path('admin/', admin.site.urls),
