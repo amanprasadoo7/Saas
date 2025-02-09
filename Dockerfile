@@ -59,6 +59,9 @@ ENV CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
 ARG ENVIRONMENT
 ENV ENVIRONMENT=${ENVIRONMENT}
 
+ARG STRIPE_SECRET_KEY
+ENV STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+
 # Set the environment variable for the Django project settings Ends
 
 # copy the project code into the container's working directory
