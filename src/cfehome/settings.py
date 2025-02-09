@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     
     # My Apps
     'profiles',
+    'customers',
     
     #Insall 3rd Party Apps
     "allauth_ui",

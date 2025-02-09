@@ -37,4 +37,8 @@ https://github.com/danihodovic/django-allauth-ui
 # AllAuth 3rd Party Login Providers
 https://docs.allauth.org/en/latest/socialaccount/providers/github.html
 
-
+# Strip Documentation
+https://docs.stripe.com/api
+https://docs.stripe.com/api/customers/create
+https://docs.stripe.com/
+https://docs.allauth.org/en/latest/account/signals.html
