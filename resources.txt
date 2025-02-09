@@ -42,3 +42,6 @@ https://docs.stripe.com/api
 https://docs.stripe.com/api/customers/create
 https://docs.stripe.com/
 https://docs.allauth.org/en/latest/account/signals.html
+
+# django-celery Automate Process
+https://pypi.org/project/django-celery/

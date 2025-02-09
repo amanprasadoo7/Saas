@@ -28,10 +28,11 @@ if "sk_test_" in stripe.api_key and not DJANGO_DEBUG:
 #   email="aman@example.com",
 # )
 
-def create_customer(name='', email='', raw=False):
+def create_customer(name='', email='', metadata={}, raw=False):
     response = stripe.Customer.create(
         name=name,
         email=email,
+        metadata=metadata,
     )
     if raw:
         return response
