@@ -37,8 +37,8 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", cast=str, default=None)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'about'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 if config('ENVIRONMENT') == 'production':
     CSRF_TRUSTED_ORIGINS = ['https://saas-production-c24b.up.railway.app']

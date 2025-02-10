@@ -22,11 +22,13 @@ django-admin
 
 Base Path : (venv) aman@LOQ-15IAX9:~/Desktop/Python/Saas/src$
 
+# Create Project
 django-admin startproject cfehome .
 
 # List of all the commands
 python manage.py
 
+# Run Python Project
 python manage.py runserver
 
 python manage.py startapp {App Name}

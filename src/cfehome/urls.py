@@ -17,7 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
-from .views import home_page_view_v1, home_page_view_v2, dynamic_page_view_v1, home_page_view, about_page_view, contact_page_view
+from .views import home_page_view_v1, home_page_view_v2, dynamic_page_view_v1, home_page_view, about_page_view, custom_logout
+from django.shortcuts import redirect
+
+# Redirect to login page
+def home_redirect(request):
+    return redirect("account_login")
 
 urlpatterns = [
     
@@ -37,11 +42,15 @@ urlpatterns = [
         # Note : To use below commented routes in settings.py uncomment the following line
         # 'DIRS': [BASE_DIR / "templates"],
 
-        path('', home_page_view, name='home'),
+        # path('/', home_page_view, name='home'),
+        path('', home_redirect),
+        path('home', home_page_view, name='home'),
         path('about/', about_page_view, name='about'),
-        path('contact/', login_required(contact_page_view), name='contact'),
         
-        #profiles
+        # Override Allauth's logout
+        path('accounts/logout/', custom_logout, name='account_logout'),  
+        
+        #Apps routes
         path('profiles/', include('profiles.urls')),
         
         # Allauth routes

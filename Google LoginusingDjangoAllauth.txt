@@ -1,0 +1,200 @@
+Enabling **Google Login** using **Django Allauth** and **Allauth UI** requires a few steps, including setting up **Google OAuth credentials**, configuring Django **settings.py**, and updating **URLs and templates**.  
+
+---
+
+## **Step 1: Create Google OAuth Credentials**
+1. **Go to Google Cloud Console**:  
+   👉 [Google Developer Console](https://console.cloud.google.com/)  
+   
+2. **Create a New Project**:
+   - Click **"Select a project"** → **"New Project"**.
+   - Name your project (e.g., "My Django App").
+   - Click **Create**.
+
+3. **Enable OAuth Consent Screen**:
+   - Go to **"APIs & Services" → "OAuth Consent Screen"**.
+   - Select **User Type**:
+     - Choose **External** (for users outside your organization).
+     - Click **Create**.
+   - Fill out the **app name**, **email**, and other details.
+   - Add **Scopes** (optional, for extra permissions).
+   - Click **Save and Continue**.
+
+4. **Create OAuth Credentials**:
+   - Go to **"APIs & Services" → "Credentials"**.
+   - Click **"Create Credentials" → "OAuth Client ID"**.
+   - Select **Application Type: Web Application**.
+   - Set **Authorized Redirect URIs**:
+     ```
+     http://127.0.0.1:8000/accounts/google/login/callback/
+     ```
+     (For production, replace `127.0.0.1` with your domain.)
+   - Click **Create** and **Save** the **Client ID** and **Client Secret**.
+
+---
+
+## **Step 2: Install and Configure Django Allauth**
+1. **Install Django Allauth (if not installed)**
+   ```bash
+   pip install django-allauth
+   ```
+
+2. **Update `settings.py`**
+   Add `'allauth'`, `'allauth.account'`, `'allauth.socialaccount'`, and `'allauth.socialaccount.providers.google'` to `INSTALLED_APPS`:
+
+   ```python
+   INSTALLED_APPS = [
+       'django.contrib.admin',
+       'django.contrib.auth',
+       'django.contrib.contenttypes',
+       'django.contrib.sessions',
+       'django.contrib.messages',
+       'django.contrib.staticfiles',
+
+       # Allauth apps
+       'allauth',
+       'allauth.account',
+       'allauth.socialaccount',
+       'allauth.socialaccount.providers.google',
+
+       # Your other apps
+   ]
+   ```
+
+3. **Add Authentication Backends**:
+   ```python
+   AUTHENTICATION_BACKENDS = [
+       'django.contrib.auth.backends.ModelBackend',  # Default auth backend
+       'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
+   ]
+   ```
+
+5. **Redirect After Login & Logout**
+   ```python
+   LOGIN_REDIRECT_URL = '/'
+   LOGOUT_REDIRECT_URL = '/'
+   ```
+
+6. **Add Google OAuth Credentials in `settings.py`**
+   ```python
+   SOCIALACCOUNT_PROVIDERS = {
+       'google': {
+           'SCOPE': [
+               'profile',
+               'email',
+           ],
+           'AUTH_PARAMS': {
+               'access_type': 'online',
+           }
+       }
+   }
+   ```
+
+---
+
+## **Step 3: Add Google OAuth Keys to Django Admin**
+1. Run migrations if not already applied:
+   ```bash
+   python manage.py migrate
+   ```
+
+2. Create a **superuser**:
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+3. Start your Django server:
+   ```bash
+   python manage.py runserver
+   ```
+
+4. Log in to **Django Admin**:
+   - Go to **http://127.0.0.1:8000/admin/**
+   - Log in with your superuser credentials.
+   - Navigate to **"Sites"**:
+     - Edit the default site.
+     - Set **domain** to `127.0.0.1` (or your production domain).
+
+   - Go to **"Social Applications"**:
+     - Click **"Add Social Application"**.
+     - Select **Google** as the provider.
+     - Enter the **Client ID** and **Client Secret** from Google OAuth.
+     - Select the **Site** you created earlier.
+     - Click **Save**.
+
+---
+
+## **Step 4: Update URLs**
+Modify your `urls.py` to include Allauth:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),  # Allauth URLs
+]
+```
+
+---
+
+## **Step 5: Update Templates for Login Button**
+In your **base.html** (or any template), add a Google login button:
+
+```html
+{% load socialaccount %}
+
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <a href="{% url 'account_logout' %}">Logout</a>
+{% else %}
+    <a href="{% provider_login_url 'google' %}">Login with Google</a>
+{% endif %}
+```
+
+---
+
+## **Step 6: Test Google Login**
+1. **Restart your Django server**:
+   ```bash
+   python manage.py runserver
+   ```
+
+2. **Visit**:  
+   ```
+   http://127.0.0.1:8000/accounts/login/
+   ```
+   - Click **"Sign in with Google"**.
+   - Log in using your Google account.
+   - You should be redirected to `/` after logging in.
+
+---
+
+## 🎉 **Done! Google Login is Now Working!**
+Now, users can log in with their **Google accounts** using Django **Allauth** and **Allauth UI**.
+
+---
+
+## **✅ Bonus: Customize Signup Flow**
+If you want users to enter additional details **after Google login**, override the `socialaccount_signup.html` template:
+
+1. Create a `templates/account/socialaccount_signup.html` file.
+2. Add the following form:
+   ```html
+   {% extends "base.html" %}
+   {% block content %}
+   <h2>Complete Your Profile</h2>
+   <form method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit">Save</button>
+   </form>
+   {% endblock %}
+   ```
+
+Now, after logging in with Google, users will be prompted to complete their profile.
+
+---
+
+## **Let me know if you have any questions! 🚀**

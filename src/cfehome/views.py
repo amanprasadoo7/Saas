@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+from django.urls import reverse
 # import logging
 
 
@@ -30,5 +33,7 @@ def home_page_view(request):
 def about_page_view(request):
     return render(request, 'pages/about.html')
 
-def contact_page_view(request):
-    return render(request, 'pages/contact.html')
+# Override the Default Logout View
+def custom_logout(request):
+    logout(request)  # Log the user out
+    return redirect(reverse('account_login'))  # Redirect to the login page
